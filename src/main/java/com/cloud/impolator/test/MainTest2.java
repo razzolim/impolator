@@ -19,15 +19,17 @@ public class MainTest2 {
 		//String fileName = "C:\\Users\\mfang\\Downloads\\manyitens.pdf";
 		//String fileName = "C:\\Users\\mfang\\Downloads\\notas - Editado.pdf";
 
-		String fileName = "C:\\Desenvolvimento\\Projetos\\Impolator\\Documentos, anotações, geral\\Notas\\notas.pdf";
+		//String fileName = "C:\\Desenvolvimento\\Projetos\\Impolator\\Documentos, anotações, geral\\Notas\\notas.pdf";
+		String fileName = "C:\\Desenvolvimento\\Projetos\\Impolator\\Documentos, anotações, geral\\Notas\\nota-varios-itens.pdf";
 
+		getItensNegociosRealizados(fileName);
 		// getItensNegociosRealizados(fileName);
 		// getValuesOfResumoDosNegocios(fileName);
 		// getValuesOfEspecificacoesDiversas(fileName);
 		// getValuesOfObservacoes(fileName);
 		// getValuesOfResumoFinanceiro(fileName);
 		// getValuesOfCustosOperacionais(fileName);
-		getValuesOfLiquido(fileName);
+		//getValuesOfLiquido(fileName);
 
 		//	HashMap<String, Integer> teste = getTamanhoListaItens(fileName);
 		//	teste.get("startListOfItens");
@@ -60,20 +62,95 @@ public class MainTest2 {
 		return result.trim();
 	}
 
-	public static HashMap<String, Integer> getTamanhoListaItens(String fileName) {
-
+	public static HashMap<String, Integer> getPositionOfNotaNegociacao(String fileName) {
 
 		HashMap<String, Integer> map = new HashMap<>();
 
+		for (int y = 0; y < 1000; y++) {
+
+			if (getTextFromCoordinate(fileName, 32, y, 800, 1).contains("Nr. nota")) {
+				map.put("startPosition", y);
+				map.put("endPosition", y+30);
+				break;
+			}
+		}
+
+		return map;
+	}
+
+	public static NotaNegociacao getValuesOfNotaNegociacao(String fileName){
+
+		HashMap<String, Integer> map = getPositionOfNotaNegociacao(fileName);
+		Integer startPosition = map.get("startPosition");
+		Integer endPosition = map.get("endPosition");
+
+		NotaNegociacao notaNeg = new NotaNegociacao();
+		for (int y = startPosition; y < endPosition; y++) {
+
+			if (notaNeg.getNrNota() == null && getTextFromCoordinate(fileName, 430, y, 35, 1).equals("Nr. nota")) {
+				notaNeg.setNrNota(getTextFromCoordinate(fileName, 430, y+1, 35, 8)); // Value of column "Nr. nota"
+			}
+
+			if (notaNeg.getFolha() == null && getTextFromCoordinate(fileName, 475, y, 40, 1).equals("Folha")) {
+				notaNeg.setFolha(getTextFromCoordinate(fileName, 475, y+1, 40, 8)); // Value of column "Folha"
+			}
+
+			if (notaNeg.getDataPregao() == null && getTextFromCoordinate(fileName, 516, y, 40, 1).equals("Data pregão")) {
+				notaNeg.setDataPregao(getTextFromCoordinate(fileName, 516, y+1, 40, 8)); // Value of column "Data pregão"
+				break;
+			}
+		}
+
+		return notaNeg;
+
+	}
+
+	public static HashMap<String, Integer> getPositionOfCorretora(String fileName) {
+
+		HashMap<String, Integer> map = new HashMap<>();
+
+		for (int y = 0; y < 1000; y++) {
+			
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 32, y, 800, 1).contains("Folha")) {
+				map.put("startPosition", y +12);
+			}
+
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Cliente")) {
+				map.put("endPosition", y-1);
+				break;
+			}
+
+		}
+
+		return map;
+	}
+
+	public static Corretora getValuesOfCorretora(String fileName){
+
+		HashMap<String, Integer> map = getPositionOfCorretora(fileName);
+		Integer startPosition = map.get("startPosition");
+
+		Corretora cor = new Corretora();
+		cor.setDescricao(getTextFromCoordinate(fileName, 32, startPosition, 700, 70)); // Value of column "Dados da corretora"
+
+		return cor;
+
+	}
+	
+	// TODO implementar get dos dados do Cliente 
+
+	public static HashMap<String, Integer> getTamanhoListaItens(String fileName) {
+
+		HashMap<String, Integer> map = new HashMap<>();
 
 		for (int y = 0; y < 1000; y++) {
 
-			if (getTextFromCoordinate(fileName, 32, y, 600, 1).contains("Q Negociação C/V Tipo mercado Prazo Especificação do")) {
-				map.put("startListOfItens", y +1);
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 32, y, 600, 1).contains("Q Negociação C/V Tipo mercado Prazo Especificação do")) {
+				map.put("startPosition", y +1);
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Resumo dos Negócios")) {
-				map.put("endListOfItens", y-1);
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Resumo dos Negócios")) {
+				map.put("endPosition", y-1);
 				break;
 			}
 
@@ -100,8 +177,8 @@ public class MainTest2 {
 		Integer columnDC = 540;
 
 		HashMap<String, Integer> map = getTamanhoListaItens(fileName);
-		Integer startListOfItens = map.get("startListOfItens");
-		Integer endListOfItens = map.get("endListOfItens");
+		Integer startListOfItens = map.get("startPosition");
+		Integer endListOfItens = map.get("endPosition");
 
 		for (int y = startListOfItens; y < endListOfItens; y++) {
 
@@ -147,11 +224,11 @@ public class MainTest2 {
 
 		for (int y = 0; y < 1000; y++) {
 
-			if (getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Resumo dos Negócios")) {
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Resumo dos Negócios")) {
 				map.put("startPosition", y +1);
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Especificações diversas")) {
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Especificações diversas")) {
 				map.put("endPosition", y-1);
 				break;
 			}
@@ -175,35 +252,35 @@ public class MainTest2 {
 				System.out.println("Achou o resumo dos negócios");
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Debêntures")) {
+			if (resNeg.getDebentures() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Debêntures")) {
 				resNeg.setDebentures(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of fied "Debêntures"
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Vendas à vista")) {
+			if (resNeg.getVendasVista() == null &&getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Vendas à vista")) {
 				resNeg.setVendasVista(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of fied "Vendas à vista"
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Compras à vista")) {
+			if (resNeg.getComprasVista() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Compras à vista")) {
 				resNeg.setComprasVista(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Compras à vista"
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Opções - compras")) {
+			if (resNeg.getOpcoesCompras() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Opções - compras")) {
 				resNeg.setOpcoesCompras(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Opções - compras"
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Opções - vendas")) {
+			if (resNeg.getOpcoesVendas() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Opções - vendas")) {
 				resNeg.setOpcoesVendas(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Opções - vendas"
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Operações à termo")) {
+			if (resNeg.getOperacoesTermo() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Operações à termo")) {
 				resNeg.setOperacoesTermo(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Operações à termo"
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Valor das oper. c/ títulos públ. (v. nom.)")) {
+			if (resNeg.getValorOperCTitulosPubl() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Valor das oper. c/ títulos públ. (v. nom.)")) {
 				resNeg.setValorOperCTitulosPubl(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Valor das oper.c/ títulos públ. (v. nom.)"
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Valor das operações")) {
+			if (resNeg.getValorOperacoes() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Valor das operações")) {
 				resNeg.setValorOperacoes(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Valor das operações"
 				break;
 			}
@@ -220,11 +297,11 @@ public class MainTest2 {
 
 		for (int y = 0; y < 1000; y++) {
 
-			if (getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Especificações diversas")) {
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Especificações diversas")) {
 				map.put("startPosition", y +1);
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 80, 1).equals("(*) Observações")) {
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("(*) Observações")) {
 				map.put("endPosition", y-1);
 				break;
 			}
@@ -260,11 +337,11 @@ public class MainTest2 {
 
 		for (int y = 0; y < 1000; y++) {
 
-			if (getTextFromCoordinate(fileName, 32, y, 80, 1).equals("(*) Observações")) {
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("(*) Observações")) {
 				map.put("startPosition", y);
 			}
 
-			if (getTextFromCoordinate(fileName, 32, y, 80, 1).contains("Capitais e regiões")) {
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 32, y, 80, 1).contains("Capitais e regiões")) {
 				map.put("endPosition", y-1);
 				break;
 			}
@@ -301,25 +378,25 @@ public class MainTest2 {
 
 		return obs;
 	}
-	
+
 	public static HashMap<String, Integer> getPositionOfResumoFinanceiro(String fileName) {
 
 		HashMap<String, Integer> map = new HashMap<>();
 
 		for (int y = 0; y < 1000; y++) {
 
-			if (getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Resumo Financeiro")) {
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Resumo Financeiro")) {
 				map.put("startPosition", y);
 			}
-			
-			if (getTextFromCoordinate(fileName, 300, y, 100, 1).contains("Custos Operacionais")) {
+
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 300, y, 100, 1).contains("Custos Operacionais")) {
 				map.put("endPosition", y-1);
 				break;
 			}
 		}
 		return map;
 	}
-	
+
 	public static ResumoFinanceiro getValuesOfResumoFinanceiro(String fileName){
 
 		HashMap<String, Integer> map = getPositionOfResumoFinanceiro(fileName);
@@ -332,7 +409,7 @@ public class MainTest2 {
 			if (resFin.getValorLiquidoOperacoes() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Valor líquido das operações")   ) {
 				resFin.setValorLiquidoOperacoes(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Valor líquido das operações"
 			}
-			
+
 			if (resFin.getTaxaLiquidacao() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Taxa de liquidação")   ) {
 				resFin.setTaxaLiquidacao(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Taxa deliquidação"
 			}
@@ -344,7 +421,7 @@ public class MainTest2 {
 			if (resFin.getTotalCBLC() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Total CBLC")   ) {
 				resFin.setTotalCBLC(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Total CBLC"
 			}
-			
+
 			if (resFin.getTaxaTermoOpcoes() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Taxa de termo/opções")   ) {
 				resFin.setTaxaTermoOpcoes(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Taxa determo/opções"
 			}
@@ -364,25 +441,25 @@ public class MainTest2 {
 
 		return resFin;
 	}
-	
+
 	public static HashMap<String, Integer> getPositionOfCustosOperacionais(String fileName) {
 
 		HashMap<String, Integer> map = new HashMap<>();
 
 		for (int y = 0; y < 1000; y++) {
 
-			if (getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Custos Operacionais")) {
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Custos Operacionais")) {
 				map.put("startPosition", y);
 			}
-			
-			if (getTextFromCoordinate(fileName, 300, y, 100, 1).contains("Total Custos / Despesas")) {
+
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 300, y, 100, 1).contains("Total Custos / Despesas")) {
 				map.put("endPosition", y);
 				break;
 			}
 		}
 		return map;
 	}
-	
+
 	public static CustosOperacionais getValuesOfCustosOperacionais(String fileName){
 
 		HashMap<String, Integer> map = getPositionOfCustosOperacionais(fileName);
@@ -391,58 +468,58 @@ public class MainTest2 {
 
 		CustosOperacionais cusOpe = new CustosOperacionais();
 		for (int y = startPosition; y <= endPosition; y++) {
-			
-			if (cusOpe.getTaxaOperacional() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Taxa Operacional") ) {
+
+			if (cusOpe.getTaxaOperacional() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Taxa Operacional")) {
 				cusOpe.setTaxaOperacional(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Taxa Operacional"
 			}
-			
-			if (cusOpe.getExecucao() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Execução") ) {
+
+			if (cusOpe.getExecucao() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Execução")) {
 				cusOpe.setExecucao(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Execução"
 			}
-			
-			if (cusOpe.getTaxaCustodia() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Taxa de Custódia") ) {
+
+			if (cusOpe.getTaxaCustodia() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Taxa de Custódia")) {
 				cusOpe.setTaxaCustodia(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Taxa de Custódia"
 			}
-			
-			if (cusOpe.getImpostos() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Impostos") ) {
+
+			if (cusOpe.getImpostos() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Impostos")) {
 				cusOpe.setImpostos(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Impostos"
 			}
 
-			if (cusOpe.getIrrf() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).contains("I.R.R.F") ) {
+			if (cusOpe.getIrrf() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).contains("I.R.R.F")) {
 				cusOpe.setIrrf(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "I.R.R.F"
 			}
-			
-			if (cusOpe.getOutros() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Outros") ) {
+
+			if (cusOpe.getOutros() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Outros")) {
 				cusOpe.setOutros(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Outros"
 			}
 
-			if (cusOpe.getTotalCustosDespesas() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Total Custos / Despesas") ) {
+			if (cusOpe.getTotalCustosDespesas() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Total Custos / Despesas")) {
 				cusOpe.setTotalCustosDespesas(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Total Custos / Despesas"
 			}
-			
+
 		}
 
 		return cusOpe;
 	}
-	
+
 	public static HashMap<String, Integer> getPositionOfLiquido(String fileName) {
 
 		HashMap<String, Integer> map = new HashMap<>();
 
 		for (int y = 0; y < 1000; y++) {
 
-			if (getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Total Custos / Despesas")) {
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Total Custos / Despesas")) {
 				map.put("startPosition", y);
 			}
-			
-			if (getTextFromCoordinate(fileName, 300, y, 100, 1).contains("Líquido para")) {
+
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 300, y, 100, 1).contains("Líquido para")) {
 				map.put("endPosition", y);
 				break;
 			}
 		}
 		return map;
 	}
-	
+
 	public static Liquido getValuesOfLiquido(String fileName){
 
 		HashMap<String, Integer> map = getPositionOfLiquido(fileName);
@@ -451,14 +528,11 @@ public class MainTest2 {
 
 		Liquido liq = new Liquido();
 		for (int y = startPosition; y <= endPosition; y++) {
-			
-			if (liq.getLiquido() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).contains("Líquido para") ) {
+
+			if (liq.getLiquido() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).contains("Líquido para")) {
 				liq.setLiquido(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Líquido para"
 			}
-			
-			getTextFromCoordinate(fileName, 508, 646, 40, 1); // valor 34,02
-			
-			getTextFromCoordinate(fileName, 300, 646, 40, 1);
+
 		}
 
 		return liq;
