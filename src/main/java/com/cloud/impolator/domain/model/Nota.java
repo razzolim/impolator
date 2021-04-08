@@ -39,7 +39,7 @@ public class Nota extends AbstractAggregateRoot<Nota> {
 	@Column(name = "dataPregao")
 	private String dataPregao;
 	
-	// Dados da empresa
+	// Dados da empresa 
 	@Size(max = 3000)
 	@Column(name = "descricao")
 	private String descricao;

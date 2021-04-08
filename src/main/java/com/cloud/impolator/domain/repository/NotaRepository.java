@@ -12,7 +12,7 @@ import com.cloud.impolator.domain.model.Nota;
 @Repository
 public interface NotaRepository  extends CustomJpaRepository<Nota, Long>, JpaSpecificationExecutor<Nota> {
 	
-	Optional<Nota> findByCodigo(Long id);
+	Optional<Nota> findById(Long id);
 	
 	List<Nota> findAll();
 
