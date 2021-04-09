@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
+import com.cloud.impolator.domain.model.Corretora;
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,10 +26,8 @@ public class NotaModel extends RepresentationModel<NotaModel>{
 	@ApiModelProperty(example = "04/05/2020")
 	private String dataPregao;
 	
-	// Dados da empresa
-	@ApiModelProperty(example = "XP Investimentos")
-	private String descricao;
-	
 	private List<ItemNotaModel> itens;
+	
+	private Corretora corretora;
 	
 }

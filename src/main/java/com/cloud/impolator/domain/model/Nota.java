@@ -5,13 +5,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.springframework.data.domain.AbstractAggregateRoot;
 
@@ -39,12 +39,10 @@ public class Nota extends AbstractAggregateRoot<Nota> {
 	@Column(name = "dataPregao")
 	private String dataPregao;
 	
-	// Dados da empresa 
-	@Size(max = 3000)
-	@Column(name = "descricao")
-	private String descricao;
-	
 	@OneToMany(mappedBy = "nota", cascade = CascadeType.ALL)
 	private List<ItemNota> itens = new ArrayList<>();
+	
+	@Embedded
+	private Corretora corretora;
 
 }
