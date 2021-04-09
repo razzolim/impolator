@@ -1,3 +1,83 @@
+
+// begin 
+Enviar: 3af602f78f596e784f37004887048f12d7246fbc [3af602f]
+Pais: 6c8999f376
+Autor: Maicon fang <maicon.fang@gmail.com>
+Data: sexta-feira, 9 de abril de 2021 14:38:30
+Comitador: Maicon fang
+In this commit was implemented new class
+
+{
+    "numNota": "6546546",
+    "folha": "1",
+    "dataPregao": "04/01/2020",
+    "itens": [
+        {
+            "q": "2",
+            "negociacao": "I-BOVESPA",
+            "cv": "C"
+        },
+        {
+            "q": "2",
+            "negociacao": "I-BOVESPA",
+            "cv": "C"
+        },
+        {
+            "q": "2",
+            "negociacao": "I-BOVESPA",
+            "cv": "C"
+        }
+    ],
+    "corretora": {
+            "descricao": "Nome da corretora e outros..."
+    },
+    "resumoNegocio": {
+            "debentures": "10,00",
+            "vendasVista": "20,00",
+            "comprasVista": "30,00",
+            "opcoesCompras": "40,00",
+            "opcoesVendas": "50,00",
+            "operacoesTermo": "60,00",
+            "valorOperCTitulosPubl": "70,00",
+            "valorOperacoes": "80,00"
+    },
+    "especificacaoDiversa": {
+            "descricao": "A coluna Q indica liquidação no Agente do Qualificado"
+    },
+    "observacao": {
+            "descricao": "I - POP"
+    },
+    "resumoFinanceiro": {
+            "valorLiquidoOperacoes": "10",
+            "taxaLiquidacao": "20",
+            "taxaRegistro": "30",
+            "totalcblc": "40",
+            "taxaTermoOpcoes": "50",
+            "taxaAna": "60",
+            "emolumentos": "70",
+            "totalBovespaSoma": "80"
+    },
+    "custoOperacional": {
+            "taxaOperacional": "10",
+            "execucao": "20",
+            "taxaCustodia": "30",
+            "impostos": "40",
+            "irrf": "50",
+            "outros": "60",
+            "totalCustosDespesas": "70"
+    },
+    "liquido": {
+            "data": "05/04/2020",
+            "valor": "34,02",
+            "observacao": "(1) As operaçõesatermo não são computadas no líquido dafatura."
+    }
+}
+ 
+
+
+
+// end
+
 http://localhost:8080/v1/notas
 {
     "numNota": "6546546",
