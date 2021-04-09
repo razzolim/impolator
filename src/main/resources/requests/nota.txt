@@ -1,0 +1,17 @@
+http://localhost:8080/v1/notas
+{
+    "numNota": "6546546",
+    "folha": "1",
+    "dataPregao": "04/01/2020",
+    "itens": [
+        {
+            "q": "2",
+            "negociacao": "I-BOVESPA",
+            "cv": "C"
+        }
+    ],
+    "corretora": {
+        "corretoraDescricao": "Nome da corretora e outros..."
+    }
+
+}
