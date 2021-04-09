@@ -17,11 +17,20 @@ public class EmissaoNotaService {
 	@Transactional
 	public Nota emitir(Nota nota) {
 
+		validarItens(nota);
+		
 		return notaRepository.save(nota);
 	}
 	
 	public Nota buscarOuFalhar(Long idNota) {
 		return notaRepository.findById(idNota)
 			.orElseThrow(() -> new NotaNaoEncontradaException(idNota));
+	}
+	
+	private void validarItens(Nota nota) {
+		nota.getItens().forEach(item -> {
+			item.setNota(nota);
+
+		});
 	}
 }

@@ -18,6 +18,22 @@ public class NotaInput {
 	private Long id;
 	
 	@Valid
+	@NotNull
+	private String numNota;
+
+	@Valid
+	@NotNull
+	private String folha;
+	
+	@Valid
+	@NotNull
+	private String dataPregao;
+	
+	@Valid
+	@NotNull
+	private String descricao;
+	
+	@Valid
 	@Size(min = 1)
 	@NotNull
 	private List<ItemNotaInput> itens;
