@@ -37,4 +37,30 @@ public class NotaInput {
 	@Valid
 	@NotNull
 	private CorretoraInput corretora;
+	
+	@Valid
+	@NotNull
+	private ResumoNegocioInput resumoNegocio;
+	
+	@Valid
+	@NotNull
+	private EspecificacaoDiversaInput especificacaoDiversa;
+	
+	@Valid
+	@NotNull
+	private ObservacaoInput observacao;
+	
+	@Valid
+	@NotNull
+	private ResumoFinanceiroInput resumoFinanceiro;
+	
+	@Valid
+	@NotNull
+	private CustoOperacionalInput custoOperacional;
+
+	@Valid
+	@NotNull
+	private LiquidoInput liquido;
+
+	
 }

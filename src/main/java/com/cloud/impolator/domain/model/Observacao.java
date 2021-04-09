@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Data
 @Embeddable
-public class Corretora {
+public class Observacao {
 
-	@Column(name = "corretora_descricao")
+	@Column(name = "observacao_descricao")
 	private String descricao;
 
 }

@@ -6,12 +6,13 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
-public class CorretoraInput {
+@Setter
+public class EspecificacaoDiversaInput {
 
-	@ApiModelProperty(example = "XP Investimento, com os dados da empresa", required = true)
+	@ApiModelProperty(example = "A coluna Q indica liquidação no Agente do Qualificado", required = true)
 	@NotBlank
 	private String descricao;
-
+	
+	
 }

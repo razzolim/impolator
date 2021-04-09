@@ -44,5 +44,23 @@ public class Nota extends AbstractAggregateRoot<Nota> {
 	
 	@Embedded
 	private Corretora corretora;
+	
+	@Embedded
+	private ResumoNegocio resumoNegocio;
+
+	@Embedded
+	private EspecificacaoDiversa especificacaoDiversa;
+	
+	@Embedded
+	private Observacao observacao;
+	
+	@Embedded
+	private ResumoFinanceiro resumoFinanceiro;
+	
+	@Embedded
+	private CustoOperacional custoOperacional;
+
+	@Embedded
+	private Liquido liquido;
 
 }
