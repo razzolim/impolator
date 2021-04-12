@@ -27,7 +27,7 @@ public class Nota extends AbstractAggregateRoot<Nota> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	 
 	@NotNull
 	@Column(name = "numNota")
 	private String numNota;
