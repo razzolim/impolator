@@ -9,8 +9,10 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.impolator.api.v1.assembler.NotaInputDisassembler;
 import com.cloud.impolator.api.v1.assembler.NotaModelAssembler;
@@ -21,6 +23,7 @@ import com.cloud.impolator.domain.exception.EntidadeNaoEncontradaException;
 import com.cloud.impolator.domain.exception.NegocioException;
 import com.cloud.impolator.domain.model.Nota;
 import com.cloud.impolator.domain.service.EmissaoNotaService;
+import com.cloud.impolator.domain.service.NotaService;
 
 
 
@@ -33,13 +36,16 @@ public class NotaController implements NotaControllerOpenApi {
 	private EmissaoNotaService emissaoNota;
 	
 	@Autowired
+	private NotaService notaService;
+	
+	@Autowired
 	private NotaInputDisassembler notaInputDisassembler;
 	
 	@Autowired
 	private NotaModelAssembler notaModelAssembler;
 	
-	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("/enviarjson")
 	public NotaModel adicionar(@Valid @RequestBody NotaInput pedidoInput) {
 		try {
 			Nota novoPedido = notaInputDisassembler.toDomainObject(pedidoInput);
@@ -51,5 +57,23 @@ public class NotaController implements NotaControllerOpenApi {
 			throw new NegocioException(e.getMessage(), e);
 		}
 	}
+	
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("/enviarpdf")
+	public NotaModel enviarpdf(@RequestParam("file") MultipartFile file) {
+		try {
+			
+			//Nota teste = NotaExtract.getValuesOfNotaNegociacao(file);
+			//System.out.println(teste);
+
+			//Nota notaSalva = notaService.salvarNota(teste);
+			Nota notaSalva = notaService.salvarNotaComPDF(file);
+
+			return notaModelAssembler.toModel(notaSalva);
+		} catch (EntidadeNaoEncontradaException e) {
+			throw new NegocioException(e.getMessage(), e);
+		}
+	}
+
 
 }

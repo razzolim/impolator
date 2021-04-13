@@ -1,4 +1,4 @@
-package com.cloud.impolator.extract;
+package com.cloud.impolator.api.v1.extract;
 
 import java.awt.Rectangle;
 import java.io.File;

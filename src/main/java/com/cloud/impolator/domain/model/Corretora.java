@@ -9,7 +9,7 @@ import lombok.Data;
 @Embeddable
 public class Corretora {
 
-	@Column(name = "corretora_descricao")
+	@Column(name = "corretora_descricao", length=1000)
 	private String descricao;
 
 }

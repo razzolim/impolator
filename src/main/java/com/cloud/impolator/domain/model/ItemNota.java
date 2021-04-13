@@ -26,6 +26,23 @@ public class ItemNota {
 	
 	private String cv;
 	
+	private String tipoMercadoria;
+	
+	private String prazo;
+	
+	private String especificacaoTitulo;
+	
+	private String obs;
+	
+	private String quantidade;
+	
+	private String precoAjuste;
+	
+	private String valorOperacao;
+	
+	private String dc;
+	
+	
 	@ManyToOne
 	@JoinColumn(nullable = false)
 	private Nota nota;
