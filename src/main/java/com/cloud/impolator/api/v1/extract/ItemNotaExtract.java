@@ -8,6 +8,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.impolator.domain.model.ItemNota;
 
+/**
+ * @author Maicon Fang
+ */
+
 public class ItemNotaExtract extends UtilsExtract {
 
 

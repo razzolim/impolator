@@ -9,15 +9,19 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+/**
+ * @author Maicon Fang
+*/
+
 @Api(tags = "Notas")
 public interface NotaControllerOpenApi {
 
 	
-	@ApiOperation("Registra um pedido")
+	@ApiOperation("Registra uma nota")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "Pedido registrado"),
+		@ApiResponse(code = 201, message = "Nota registrada"),
 	})
 	NotaModel adicionar(
-			@ApiParam(name = "corpo", value = "Representação de um novo pedido", required = true)
+			@ApiParam(name = "corpo", value = "Representação de uma nova nota", required = true)
 			NotaInput notaInput);
 }

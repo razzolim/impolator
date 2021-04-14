@@ -17,6 +17,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Maicon Fang
+*/
+
 @Relation(collectionRelation = "notaNegociacao")
 @Getter
 @Setter

@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import com.cloud.impolator.api.v1.model.input.ItemNotaInput;
 import com.cloud.impolator.domain.model.ItemNota;
 
+/**
+ * @author Maicon Fang
+*/
+
 @Configuration
 public class ModelMapperConfig {
 

@@ -8,6 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.cloud.impolator.infrastructure.repository.CustomJpaRepositoryImpl;
 
+/**
+ * @author Maicon Fang
+ */
 
 @SpringBootApplication
 @EnableJpaRepositories(repositoryBaseClass = CustomJpaRepositoryImpl.class)

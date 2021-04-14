@@ -18,6 +18,11 @@ import org.springframework.data.domain.AbstractAggregateRoot;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * @author Maicon Fang
+ */
+
+
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @Entity

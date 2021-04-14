@@ -6,6 +6,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.impolator.domain.model.EspecificacaoDiversa;
 
+/**
+ * @author Maicon Fang
+ */
+
 public class EspecificacaoDiversaExtract extends UtilsExtract {
 
 	

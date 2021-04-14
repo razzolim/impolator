@@ -5,6 +5,10 @@ import javax.persistence.Embeddable;
 
 import lombok.Data;
 
+/**
+ * @author Maicon Fang
+*/
+
 @Data
 @Embeddable
 public class EspecificacaoDiversa {

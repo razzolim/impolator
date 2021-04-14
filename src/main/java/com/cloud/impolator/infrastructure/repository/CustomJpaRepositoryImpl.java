@@ -9,6 +9,9 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 
 import com.cloud.impolator.domain.repository.CustomJpaRepository;
 
+/**
+ * @author Maicon Fang
+ */
 
 public class CustomJpaRepositoryImpl<T, ID> extends SimpleJpaRepository<T, ID>
 	implements CustomJpaRepository<T, ID> {

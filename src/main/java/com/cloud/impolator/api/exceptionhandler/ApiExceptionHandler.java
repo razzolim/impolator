@@ -36,6 +36,10 @@ import com.fasterxml.jackson.databind.exc.PropertyBindingException;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author Maicon Fang
+ */
+
 @Slf4j
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {

@@ -6,6 +6,10 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @author Maicon Fang
+ */
+
 @Getter
 @Setter
 public class CustoOperacionalInput {

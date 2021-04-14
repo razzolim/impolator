@@ -3,8 +3,12 @@ package com.cloud.impolator.api.v1.extract;
 import java.util.HashMap;
 
 import org.springframework.web.multipart.MultipartFile;
-
 import com.cloud.impolator.domain.model.Corretora;
+
+
+/**
+ * @author Maicon Fang
+ */
 
 public class CorretoraExtract extends UtilsExtract {
 

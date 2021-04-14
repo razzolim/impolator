@@ -7,6 +7,10 @@ import org.springframework.stereotype.Component;
 import com.cloud.impolator.api.v1.model.input.NotaInput;
 import com.cloud.impolator.domain.model.Nota;
 
+/**
+ * @author Maicon Fang
+ */
+
 @Component
 public class NotaInputDisassembler {
 

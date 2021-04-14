@@ -12,8 +12,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.impolator.domain.exception.ArquivoException;
 
-public class UtilsExtract {
+/**
+ * @author Maicon Fang
+ */
 
+public class UtilsExtract {
 
 	public static String getTextFromCoordinate(MultipartFile file,int x,int y,int width,int height)  {
 		String result = "";

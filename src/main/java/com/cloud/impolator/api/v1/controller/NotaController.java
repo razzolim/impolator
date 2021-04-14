@@ -27,8 +27,6 @@ import com.cloud.impolator.domain.service.EmissaoNotaService;
 import com.cloud.impolator.domain.service.NotaService;
 
 
-
-// Isso é a mesma coia que resource / endpoints
 @RestController
 @RequestMapping(path ="/v1/notas", produces = MediaType.APPLICATION_JSON_VALUE)
 public class NotaController implements NotaControllerOpenApi {
@@ -64,7 +62,7 @@ public class NotaController implements NotaControllerOpenApi {
 	public NotaModel enviarpdf(@RequestParam("file") MultipartFile file) {
 		try {
 			
-			Nota notaSalva = notaService.salvarNotaComPDF(file);
+			Nota notaSalva = notaService.salvarPDF(file);
 
 			return notaModelAssembler.toModel(notaSalva);
 			

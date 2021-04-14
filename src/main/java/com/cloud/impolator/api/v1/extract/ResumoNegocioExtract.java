@@ -6,8 +6,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.cloud.impolator.domain.model.ResumoNegocio;
 
-public class ResumoNegocioExtract extends UtilsExtract {
+/**
+ * @author Maicon Fang
+ */
 
+public class ResumoNegocioExtract extends UtilsExtract {
 	
 	public static HashMap<String, Integer> getPositionOfResumoDosNegocios(MultipartFile fileName) {
 

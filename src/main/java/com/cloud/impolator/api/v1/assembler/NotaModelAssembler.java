@@ -9,6 +9,10 @@ import com.cloud.impolator.api.v1.controller.NotaController;
 import com.cloud.impolator.api.v1.model.NotaModel;
 import com.cloud.impolator.domain.model.Nota;
 
+/**
+ * @author Maicon Fang
+ */
+
 @Component
 public class NotaModelAssembler 
 		extends RepresentationModelAssemblerSupport<Nota, NotaModel> {

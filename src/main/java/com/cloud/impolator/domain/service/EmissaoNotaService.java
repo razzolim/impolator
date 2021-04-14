@@ -8,6 +8,10 @@ import com.cloud.impolator.domain.exception.NotaNaoEncontradaException;
 import com.cloud.impolator.domain.model.Nota;
 import com.cloud.impolator.domain.repository.NotaRepository;
 
+/**
+ * @author Maicon Fang
+ */
+
 @Service
 public class EmissaoNotaService {
 

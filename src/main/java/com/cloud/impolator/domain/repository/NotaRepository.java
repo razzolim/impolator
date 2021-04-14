@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.cloud.impolator.domain.model.Nota;
 
+/**
+ * @author Maicon Fang
+ */
 
 @Repository
 public interface NotaRepository  extends CustomJpaRepository<Nota, Long>, JpaSpecificationExecutor<Nota> {

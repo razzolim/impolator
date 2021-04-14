@@ -22,6 +22,9 @@ import com.cloud.impolator.api.core.repository.filter.FiltroPesquisa.ArgumentoPe
 import com.cloud.impolator.api.core.repository.filter.FiltroPesquisa.CondicaoPesquisa;
 import com.cloud.impolator.api.core.repository.filter.FiltroPesquisa.OrdemPesquisa;
 
+/**
+ * @author Maicon Fang
+ */
 
 @Repository
 public class ListaPaginadoRepositoryImpl<T, R, ID> {

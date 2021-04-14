@@ -3,6 +3,10 @@ package com.cloud.impolator.api.core.repository.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Maicon Fang
+ */
+
 public class FiltroPesquisa {
 
 	private List<ArgumentoPesquisa> argumentos = new ArrayList<>();

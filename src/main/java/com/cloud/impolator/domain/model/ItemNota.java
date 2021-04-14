@@ -10,6 +10,10 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * @author Maicon Fang
+*/
+
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity

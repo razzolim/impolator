@@ -2,6 +2,10 @@ package com.cloud.impolator.api.exceptionhandler;
 
 import lombok.Getter;
 
+/**
+ * @author Maicon Fang
+ */
+
 @Getter
 public enum ProblemType {
 
