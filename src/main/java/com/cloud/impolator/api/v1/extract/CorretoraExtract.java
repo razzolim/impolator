@@ -1,6 +1,5 @@
 package com.cloud.impolator.api.v1.extract;
 
-import java.io.IOException;
 import java.util.HashMap;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -16,22 +15,14 @@ public class CorretoraExtract extends UtilsExtract {
 
 		for (int y = 0; y < 1000; y++) {
 
-			try {
-
-				if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 32, y, 800, 1).contains("Folha")) {
-					map.put("startPosition", y +12);
-				}
-
-				if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Cliente")) {
-					map.put("endPosition", y-1);
-					break;
-				}
-
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if (map.get("startPosition") == null && getTextFromCoordinate(fileName, 32, y, 800, 1).contains("Folha")) {
+				map.put("startPosition", y +12);
 			}
 
+			if (map.get("startPosition") != null && getTextFromCoordinate(fileName, 32, y, 80, 1).equals("Cliente")) {
+				map.put("endPosition", y-1);
+				break;
+			}
 		}
 
 		return map;
@@ -43,14 +34,8 @@ public class CorretoraExtract extends UtilsExtract {
 		Integer startPosition = map.get("startPosition");
 
 		Corretora cor = new Corretora();
-		try {
 
-			cor.setDescricao(getTextFromCoordinate(fileName, 32, startPosition, 700, 70).trim()); // Value of column "Dados da corretora"
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+		cor.setDescricao(getTextFromCoordinate(fileName, 32, startPosition, 700, 70).trim()); // Value of column "Dados da corretora"
 
 		return cor;
 

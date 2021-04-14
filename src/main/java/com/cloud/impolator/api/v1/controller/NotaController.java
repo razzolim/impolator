@@ -19,6 +19,7 @@ import com.cloud.impolator.api.v1.assembler.NotaModelAssembler;
 import com.cloud.impolator.api.v1.model.NotaModel;
 import com.cloud.impolator.api.v1.model.input.NotaInput;
 import com.cloud.impolator.api.v1.openapi.controller.NotaControllerOpenApi;
+import com.cloud.impolator.domain.exception.ArquivoException;
 import com.cloud.impolator.domain.exception.EntidadeNaoEncontradaException;
 import com.cloud.impolator.domain.exception.NegocioException;
 import com.cloud.impolator.domain.model.Nota;
@@ -63,15 +64,12 @@ public class NotaController implements NotaControllerOpenApi {
 	public NotaModel enviarpdf(@RequestParam("file") MultipartFile file) {
 		try {
 			
-			//Nota teste = NotaExtract.getValuesOfNotaNegociacao(file);
-			//System.out.println(teste);
-
-			//Nota notaSalva = notaService.salvarNota(teste);
 			Nota notaSalva = notaService.salvarNotaComPDF(file);
 
 			return notaModelAssembler.toModel(notaSalva);
-		} catch (EntidadeNaoEncontradaException e) {
-			throw new NegocioException(e.getMessage(), e);
+			
+		} catch (ArquivoException e) {
+			throw new ArquivoException(String.format(e.getMessage()));
 		}
 	}
 
