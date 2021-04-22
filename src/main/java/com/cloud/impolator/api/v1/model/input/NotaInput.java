@@ -1,5 +1,6 @@
 package com.cloud.impolator.api.v1.model.input;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -23,7 +24,7 @@ public class NotaInput {
 	
 	@Valid
 	@NotNull
-	private String numNota;
+	private Integer numNota;
 
 	@Valid
 	@NotNull
@@ -31,7 +32,7 @@ public class NotaInput {
 	
 	@Valid
 	@NotNull
-	private String dataPregao;
+	private LocalDate dataPregao;
 	
 	@Valid
 	@Size(min = 1)

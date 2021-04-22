@@ -1,5 +1,7 @@
 package com.cloud.impolator.api.v1.model.input;
 
+import java.math.BigDecimal;
+
 import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -16,34 +18,34 @@ public class ResumoNegocioInput {
 
 	@ApiModelProperty(example = "10,00", required = true)
 	@NotBlank
-	private String debentures;
+	private BigDecimal debentures;
 	
 	@ApiModelProperty(example = "46,00", required = true)
 	@NotBlank
-	private String vendasVista;
+	private BigDecimal vendasVista;
 
 	@ApiModelProperty(example = "45,00", required = true)
 	@NotBlank
-	private String comprasVista;
+	private BigDecimal comprasVista;
 	
 	@ApiModelProperty(example = "96,00", required = true)
 	@NotBlank
-	private String opcoesCompras;
+	private BigDecimal opcoesCompras;
 	
 	@ApiModelProperty(example = "35,00", required = true)
 	@NotBlank
-	private String opcoesVendas;
+	private BigDecimal opcoesVendas;
 	
 	@ApiModelProperty(example = "50,00", required = true)
 	@NotBlank
-	private String operacoesTermo;
+	private BigDecimal operacoesTermo;
 	
 	@ApiModelProperty(example = "9,00", required = true)
 	@NotBlank
-	private String valorOperCTitulosPubl;
+	private BigDecimal valorOperCTitulosPubl;
 	
 	@ApiModelProperty(example = "70,00", required = true)
 	@NotBlank
-	private String valorOperacoes;
+	private BigDecimal valorOperacoes;
 	
 }

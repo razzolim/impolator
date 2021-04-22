@@ -1,6 +1,8 @@
 package com.cloud.impolator.api.v1.controller;
 
 
+import java.io.IOException;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,13 +47,13 @@ public class NotaController implements NotaControllerOpenApi {
 	
 	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/enviarjson")
-	public NotaModel adicionar(@Valid @RequestBody NotaInput pedidoInput) {
+	public NotaModel adicionar(@Valid @RequestBody NotaInput notaInput) {
 		try {
-			Nota novoPedido = notaInputDisassembler.toDomainObject(pedidoInput);
+			Nota novNota = notaInputDisassembler.toDomainObject(notaInput);
 
-			novoPedido = emissaoNota.emitir(novoPedido);
+			novNota = emissaoNota.emitir(novNota);
 
-			return notaModelAssembler.toModel(novoPedido);
+			return notaModelAssembler.toModel(novNota);
 		} catch (EntidadeNaoEncontradaException e) {
 			throw new NegocioException(e.getMessage(), e);
 		}
@@ -71,5 +73,19 @@ public class NotaController implements NotaControllerOpenApi {
 		}
 	}
 
+	
+	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping("/enviarpdfregex")
+	public NotaModel enviarpdfregex(@RequestParam("file") MultipartFile file) throws IOException {
+		try {
+			
+			Nota notaSalva = notaService.salvarPDFRegex(file);
+
+			return notaModelAssembler.toModel(notaSalva);
+			
+		} catch (ArquivoException e) {
+			throw new ArquivoException(String.format(e.getMessage()));
+		}
+	}
 
 }

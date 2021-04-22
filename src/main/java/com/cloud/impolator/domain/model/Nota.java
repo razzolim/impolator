@@ -1,5 +1,6 @@
 package com.cloud.impolator.domain.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,14 +36,14 @@ public class Nota extends AbstractAggregateRoot<Nota> {
 	 
 	@NotNull
 	@Column(name = "numNota")
-	private String numNota;
+	private Integer numNota;
 
 	@NotNull
 	@Column(name = "folha")
-	private String folha;
+	private Integer folha;
 	
 	@Column(name = "dataPregao")
-	private String dataPregao;
+	private LocalDate dataPregao;
 	
 	@OneToMany(mappedBy = "nota", cascade = CascadeType.ALL)
 	private List<ItemNota> itens = new ArrayList<>();
@@ -51,21 +52,21 @@ public class Nota extends AbstractAggregateRoot<Nota> {
 	private Corretora corretora;
 	
 	@Embedded
-	private ResumoNegocio resumoNegocio;
-
-	@Embedded
 	private EspecificacaoDiversa especificacaoDiversa;
 	
 	@Embedded
 	private Observacao observacao;
+
+	@Embedded
+	private ResumoNegocio resumoNegocio;
 	
 	@Embedded
 	private ResumoFinanceiro resumoFinanceiro;
 	
-	@Embedded
-	private CustoOperacional custoOperacional;
+//	@Embedded
+//	private CustoOperacional custoOperacional;
 
-	@Embedded
-	private Liquido liquido;
+//	@Embedded
+//	private Liquido liquido;
 
 }

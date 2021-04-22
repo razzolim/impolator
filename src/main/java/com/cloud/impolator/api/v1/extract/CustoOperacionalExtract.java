@@ -1,5 +1,6 @@
 package com.cloud.impolator.api.v1.extract;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -40,31 +41,31 @@ public class CustoOperacionalExtract extends UtilsExtract {
 		for (int y = startPosition; y <= endPosition; y++) {
 
 			if (cusOpe.getTaxaOperacional() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Taxa Operacional")) {
-				cusOpe.setTaxaOperacional(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Taxa Operacional"
+				cusOpe.setTaxaOperacional(new BigDecimal(getTextFromCoordinate(fileName, 508, y, 40, 1))); // Value of column "Taxa Operacional"
 			}
 
 			if (cusOpe.getExecucao() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Execução")) {
-				cusOpe.setExecucao(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Execução"
+				cusOpe.setExecucao(new BigDecimal(getTextFromCoordinate(fileName, 508, y, 40, 1))); // Value of column "Execução"
 			}
 
 			if (cusOpe.getTaxaCustodia() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Taxa de Custódia")) {
-				cusOpe.setTaxaCustodia(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Taxa de Custódia"
+				cusOpe.setTaxaCustodia(new BigDecimal(getTextFromCoordinate(fileName, 508, y, 40, 1))); // Value of column "Taxa de Custódia"
 			}
 
 			if (cusOpe.getImpostos() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Impostos")) {
-				cusOpe.setImpostos(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Impostos"
+				cusOpe.setImpostos(new BigDecimal(getTextFromCoordinate(fileName, 508, y, 40, 1))); // Value of column "Impostos"
 			}
 
 			if (cusOpe.getIrrf() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).contains("I.R.R.F")) {
-				cusOpe.setIrrf(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "I.R.R.F"
+				cusOpe.setIrrf(new BigDecimal(getTextFromCoordinate(fileName, 508, y, 40, 1))); // Value of column "I.R.R.F"
 			}
 
 			if (cusOpe.getOutros() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Outros")) {
-				cusOpe.setOutros(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Outros"
+				cusOpe.setOutros(new BigDecimal(getTextFromCoordinate(fileName, 508, y, 40, 1))); // Value of column "Outros"
 			}
 
 			if (cusOpe.getTotalCustosDespesas() == null && getTextFromCoordinate(fileName, 300, y, 100, 1).equals("Total Custos / Despesas")) {
-				cusOpe.setTotalCustosDespesas(getTextFromCoordinate(fileName, 508, y, 40, 1)); // Value of column "Total Custos / Despesas"
+				cusOpe.setTotalCustosDespesas(new BigDecimal(getTextFromCoordinate(fileName, 508, y, 40, 1))); // Value of column "Total Custos / Despesas"
 			}
 
 		}

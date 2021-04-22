@@ -1,5 +1,7 @@
 package com.cloud.impolator.domain.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -14,24 +16,24 @@ import lombok.Data;
 public class CustoOperacional {
 	
 	@Column(name = "custo_operacional_taxa_operacional")
-	private String taxaOperacional;
+	private BigDecimal taxaOperacional;
 	
 	@Column(name = "custo_operacional_execucao")
-	private String execucao;
+	private BigDecimal execucao;
 	
 	@Column(name = "custo_operacional_taxa_custodia")
-	private String taxaCustodia;
+	private BigDecimal taxaCustodia;
 	
 	@Column(name = "custo_operacional_impostos")
-	private String impostos;
+	private BigDecimal impostos;
 	
 	@Column(name = "custo_operacional_irrf")
-	private String irrf;
+	private BigDecimal irrf;
 	
 	@Column(name = "custo_operacional_outros")
-	private String outros;
+	private BigDecimal outros;
 	
 	@Column(name = "custo_operacional_total_custos_despesas")
-	private String totalCustosDespesas;
+	private BigDecimal totalCustosDespesas;
 	
 }

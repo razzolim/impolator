@@ -28,10 +28,10 @@ public class NotaModel extends RepresentationModel<NotaModel>{
 
 	
 	@ApiModelProperty(example = "6497158")
-	private String numNota;
+	private Integer numNota;
 
 	@ApiModelProperty(example = "1")
-	private String folha;
+	private Integer folha;
 	
 	@ApiModelProperty(example = "04/05/2020")
 	private String dataPregao;

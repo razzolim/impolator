@@ -1,5 +1,6 @@
 package com.cloud.impolator.api.v1.extract;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -46,35 +47,35 @@ public class ResumoNegocioExtract extends UtilsExtract {
 			}
 
 			if (resNeg.getDebentures() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Debêntures")) {
-				resNeg.setDebentures(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of fied "Debêntures"
+				resNeg.setDebentures(new BigDecimal(getTextFromCoordinate(fileName, 270, y, 28, 1))); // Value of fied "Debêntures"
 			}
 
 			if (resNeg.getVendasVista() == null &&getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Vendas à vista")) {
-				resNeg.setVendasVista(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of fied "Vendas à vista"
+				resNeg.setVendasVista(new BigDecimal(getTextFromCoordinate(fileName, 270, y, 28, 1))); // Value of fied "Vendas à vista"
 			}
 
 			if (resNeg.getComprasVista() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Compras à vista")) {
-				resNeg.setComprasVista(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Compras à vista"
+				resNeg.setComprasVista(new BigDecimal(getTextFromCoordinate(fileName, 270, y, 28, 1))); // Value of field "Compras à vista"
 			}
 
 			if (resNeg.getOpcoesCompras() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Opções - compras")) {
-				resNeg.setOpcoesCompras(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Opções - compras"
+				resNeg.setOpcoesCompras(new BigDecimal(getTextFromCoordinate(fileName, 270, y, 28, 1))); // Value of field "Opções - compras"
 			}
 
 			if (resNeg.getOpcoesVendas() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Opções - vendas")) {
-				resNeg.setOpcoesVendas(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Opções - vendas"
+				resNeg.setOpcoesVendas(new BigDecimal(getTextFromCoordinate(fileName, 270, y, 28, 1))); // Value of field "Opções - vendas"
 			}
 
 			if (resNeg.getOperacoesTermo() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Operações à termo")) {
-				resNeg.setOperacoesTermo(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Operações à termo"
+				resNeg.setOperacoesTermo(new BigDecimal(getTextFromCoordinate(fileName, 270, y, 28, 1))); // Value of field "Operações à termo"
 			}
 
 			if (resNeg.getValorOperCTitulosPubl() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Valor das oper. c/ títulos públ. (v. nom.)")) {
-				resNeg.setValorOperCTitulosPubl(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Valor das oper.c/ títulos públ. (v. nom.)"
+				resNeg.setValorOperCTitulosPubl(new BigDecimal(getTextFromCoordinate(fileName, 270, y, 28, 1))); // Value of field "Valor das oper.c/ títulos públ. (v. nom.)"
 			}
 
 			if (resNeg.getValorOperacoes() == null && getTextFromCoordinate(fileName, 32, y, 200, 1).equals("Valor das operações")) {
-				resNeg.setValorOperacoes(getTextFromCoordinate(fileName, 270, y, 28, 1)); // Value of field "Valor das operações"
+				resNeg.setValorOperacoes(new BigDecimal(getTextFromCoordinate(fileName, 270, y, 28, 1))); // Value of field "Valor das operações"
 				break;
 			}
 

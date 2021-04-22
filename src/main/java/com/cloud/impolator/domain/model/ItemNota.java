@@ -1,5 +1,7 @@
 package com.cloud.impolator.domain.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,11 +28,11 @@ public class ItemNota {
 	
 	private String q;
 	
-	private String negociacao;
+	private String bolsaValores;
 	
-	private String cv;
+	private Boolean compra;
 	
-	private String tipoMercadoria;
+	private String tipoMercado;
 	
 	private String prazo;
 	
@@ -38,13 +40,13 @@ public class ItemNota {
 	
 	private String obs;
 	
-	private String quantidade;
+	private Integer quantidade;
 	
-	private String precoAjuste;
+	private BigDecimal precoAjuste;
 	
-	private String valorOperacao;
+	private BigDecimal valorOperacao;
 	
-	private String dc;
+	private String debitoCredito;
 	
 	
 	@ManyToOne

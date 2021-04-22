@@ -1,5 +1,6 @@
 package com.cloud.impolator.api.v1.extract;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,11 +64,14 @@ public class ItemNotaExtract extends UtilsExtract {
 
 				objectNegRea.setQ(getTextFromCoordinate(fileName, columnQ, y, 10, 1));// Value of column "Negócios realizados - Q"
 
-				objectNegRea.setNegociacao(getTextFromCoordinate(fileName, columnNeg, y, 45, 1)); // Value of column "Negócios realizados - Negociação"
+				objectNegRea.setBolsaValores(getTextFromCoordinate(fileName, columnNeg, y, 45, 1)); // Value of column "Negócios realizados - Negociação"
 
-				objectNegRea.setCv(getTextFromCoordinate(fileName, columnCV, y, 10, 1)); // Value of column "Negócios realizados - C/V"
+				 // Value of column "Negócios realizados - C/V"
+				if (getTextFromCoordinate(fileName, columnCV, y, 10, 1).equals("C")) {
+					objectNegRea.setCompra(true);	
+				} else objectNegRea.setCompra(false);
 
-				objectNegRea.setTipoMercadoria(getTextFromCoordinate(fileName, columnTipMer, y, 55, 1)); // Value of column "Negócios realizados - Tipo mercado"
+				objectNegRea.setTipoMercado(getTextFromCoordinate(fileName, columnTipMer, y, 55, 1)); // Value of column "Negócios realizados - Tipo mercado"
 
 				objectNegRea.setPrazo(getTextFromCoordinate(fileName, columnPra, y, 20, 1)); // Value of column "Negócios realizados - Prazo"
 
@@ -75,13 +79,13 @@ public class ItemNotaExtract extends UtilsExtract {
 
 				objectNegRea.setObs(getTextFromCoordinate(fileName, columnObs, y, 20, 1)); // Value of column "Obs"
 
-				objectNegRea.setQuantidade(getTextFromCoordinate(fileName, columnQua, y, 54, 1)); // Value of column "Quantidade"
+				objectNegRea.setQuantidade(Integer.parseInt(getTextFromCoordinate(fileName, columnQua, y, 54, 1))); // Value of column "Quantidade"
 
-				objectNegRea.setPrecoAjuste(getTextFromCoordinate(fileName, columnPreAju, y, 54, 1)); // Value of column "Preço Ajuste"
+				objectNegRea.setPrecoAjuste(new BigDecimal(getTextFromCoordinate(fileName, columnPreAju, y, 54, 1))); // Value of column "Preço Ajuste"
 
-				objectNegRea.setValorOperacao(getTextFromCoordinate(fileName, columnValOpeAju, y, 92, 1)); // Value of column "Valor Operação / Ajuste"
+				objectNegRea.setValorOperacao(new BigDecimal(getTextFromCoordinate(fileName, columnValOpeAju, y, 92, 1))); // Value of column "Valor Operação / Ajuste"
 
-				objectNegRea.setDc(getTextFromCoordinate(fileName, columnDC, y, 20, 1)); // Value of column "D/C"
+				objectNegRea.setDebitoCredito(getTextFromCoordinate(fileName, columnDC, y, 20, 1)); // Value of column "D/C"
 
 				listNegRea.add(objectNegRea);
 

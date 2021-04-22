@@ -1,5 +1,7 @@
 package com.cloud.impolator.api.v1.extract;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -39,15 +41,19 @@ public class NotaExtract extends UtilsExtract {
 		for (int y = startPosition; y < endPosition; y++) {
 
 			if (nota.getNumNota() == null && getTextFromCoordinate(fileName, 430, y, 35, 1).equals("Nr. nota")) {
-				nota.setNumNota(getTextFromCoordinate(fileName, 430, y+1, 35, 8)); // Value of column "Nr. nota"
+				nota.setNumNota(Integer.parseInt(getTextFromCoordinate(fileName, 430, y+1, 35, 8))); // Value of column "Nr. nota"
 			}
 
 			if (nota.getFolha() == null && getTextFromCoordinate(fileName, 475, y, 40, 1).equals("Folha")) {
-				nota.setFolha(getTextFromCoordinate(fileName, 475, y+1, 40, 8)); // Value of column "Folha"
+				nota.setFolha(Integer.parseInt(getTextFromCoordinate(fileName, 475, y+1, 40, 8))); // Value of column "Folha"
 			}
 
+			// Value of column "Data pregão"
 			if (nota.getDataPregao() == null && getTextFromCoordinate(fileName, 516, y, 40, 1).equals("Data pregão")) {
-				nota.setDataPregao(getTextFromCoordinate(fileName, 516, y+1, 40, 8)); // Value of column "Data pregão"
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
+				LocalDate date = LocalDate.parse(getTextFromCoordinate(fileName, 516, y, 40, 1), formatter);
+
+				nota.setDataPregao(date); 
 				break;
 			}
 

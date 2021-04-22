@@ -1,5 +1,7 @@
 package com.cloud.impolator.api.v1.model.input;
 
+import java.math.BigDecimal;
+
 import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -23,7 +25,7 @@ public class ItemNotaInput {
 	
 	@ApiModelProperty(example = "C")
 	@NotBlank
-	private String cv;
+	private Boolean compra;
 	
 	@ApiModelProperty(example = "FRACIONADO")
 	@NotBlank
@@ -41,15 +43,15 @@ public class ItemNotaInput {
 	
 	@ApiModelProperty(example = "100")
 	@NotBlank
-	private String quantidade;
+	private Integer quantidade;
 	
 	@ApiModelProperty(example = "16,42")
 	@NotBlank
-	private String precoAjuste;
+	private BigDecimal precoAjuste;
 	
 	@ApiModelProperty(example = "700,52")
 	@NotBlank
-	private String valorOperacao;
+	private BigDecimal valorOperacao;
 	
 	@ApiModelProperty(example = "D")
 	@NotBlank

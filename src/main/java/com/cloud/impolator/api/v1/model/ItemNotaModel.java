@@ -1,5 +1,7 @@
 package com.cloud.impolator.api.v1.model;
 
+import java.math.BigDecimal;
+
 import javax.validation.constraints.NotBlank;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -20,13 +22,13 @@ public class ItemNotaModel extends RepresentationModel<ItemNotaModel> {
 	private String q;
 	
 	@ApiModelProperty(example = "I-BOVESPA")
-	private String negociacao;
+	private String bolsaValores;
 	
 	@ApiModelProperty(example = "C")
-	private String cv;
+	private Boolean compra;
 	
 	@ApiModelProperty(example = "FRACIONADO")
-	private String tipoMercadoria;
+	private String tipoMercado;
 	
 	@ApiModelProperty(example = "30")
 	private String prazo;
@@ -38,15 +40,15 @@ public class ItemNotaModel extends RepresentationModel<ItemNotaModel> {
 	private String obs;
 	
 	@ApiModelProperty(example = "100")
-	private String quantidade;
+	private Integer quantidade;
 	
 	@ApiModelProperty(example = "16,42")
-	private String precoAjuste;
+	private BigDecimal precoAjuste;
 	
 	@ApiModelProperty(example = "700,52")
 	@NotBlank
-	private String valorOperacao;
+	private BigDecimal valorOperacao;
 	
 	@ApiModelProperty(example = "D")
-	private String dc;
+	private String debitoCredito;
 }
