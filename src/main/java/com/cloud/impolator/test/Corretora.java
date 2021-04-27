@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class Corretora {
 
-	private String descricao;
+	private String descricao; 
 
 }
