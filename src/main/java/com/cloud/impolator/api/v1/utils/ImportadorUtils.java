@@ -100,43 +100,23 @@ public final class ImportadorUtils {
 		Pattern p = Pattern.compile(RegexUtils.REGEX_NEGOCIACAO, Pattern.MULTILINE);
 		Matcher mtNegociacoes = p.matcher(notaAtual);
 
-		while (mtNegociacoes.find()) {
-			//nota.addNegociacao(createNegociacao(mtNegociacoes));
-			nota.setItens(createNegociacaoFang(mtNegociacoes));
-		}
+		nota.setItens(createNegociacao(mtNegociacoes, notaAtual));
 
 	}
 
-	private static ItemNota createNegociacao(Matcher mtNegociacoes) {
-		ItemNota negociacao = new ItemNota();
-		try {
-			// TODO não tem mapeado o Q na itemNota
-			negociacao.setBolsaValores(mtNegociacoes.group(1));
-			negociacao.setCompra(mtNegociacoes.group(2).equals("C"));
-			negociacao.setTipoMercado(mtNegociacoes.group(3));
-			negociacao.setEspecificacaoTitulo(mtNegociacoes.group(4).trim());
 
-			setTipoEObservacao(mtNegociacoes.group(5), negociacao);
-
-			negociacao.setQuantidade(Integer.valueOf(mtNegociacoes.group(6)));
-			negociacao.setPrecoAjuste(new BigDecimal(mtNegociacoes.group(7).replace(",", ".")));
-			negociacao.setValorOperacao(new BigDecimal(mtNegociacoes.group(8).replace(",", ".")));
-			negociacao.setDebitoCredito(mtNegociacoes.group(9));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return negociacao;
-	}
 	
-	private static List<ItemNota> createNegociacaoFang(Matcher mtNegociacoes) {
+	private static List<ItemNota> createNegociacao(Matcher mtNegociacoes, String notaAtual) {
 		
 		ArrayList<ItemNota> listNegRea = new ArrayList<ItemNota>();
 		
-		ItemNota negociacao = new ItemNota();
-		
-		try {
+		Pattern p = Pattern.compile(RegexUtils.REGEX_NEGOCIACAO, Pattern.MULTILINE);
+		mtNegociacoes = p.matcher(notaAtual);
+
+		while (mtNegociacoes.find()) {
+			
 			// TODO não tem mapeado o Q na itemNota
+			ItemNota negociacao = new ItemNota();
 			negociacao.setBolsaValores(mtNegociacoes.group(1));
 			negociacao.setCompra(mtNegociacoes.group(2).equals("C"));
 			negociacao.setTipoMercado(mtNegociacoes.group(3));
@@ -150,8 +130,6 @@ public final class ImportadorUtils {
 			negociacao.setDebitoCredito(mtNegociacoes.group(9));
 			
 			listNegRea.add(negociacao);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
 		return listNegRea;
